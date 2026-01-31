@@ -11,6 +11,7 @@ export function arrayBufferToBase64(buffer: ArrayBuffer): string {
 export function floatTo16BitPCM(float32Array: Float32Array): Int16Array {
     const buffer = new Int16Array(float32Array.length);
     for (let i = 0; i < float32Array.length; i++) {
+        // Clamp and scale to 16-bit PCM
         const s = Math.max(-1, Math.min(1, float32Array[i]));
         buffer[i] = s < 0 ? s * 0x8000 : s * 0x7fff;
     }

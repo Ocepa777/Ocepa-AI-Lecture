@@ -62,44 +62,44 @@ export const Dashboard = () => {
                     <Loader2 className="h-8 w-8 text-ocean-600 animate-spin" />
                 </div>
             ) : (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
                     <div
                         onClick={handleStartNew}
-                        className="group border-2 border-dashed border-slate-200 rounded-2xl p-8 flex flex-col items-center justify-center text-center hover:border-ocean-400 hover:bg-ocean-50/50 cursor-pointer transition-all duration-300"
+                        className="group border-2 border-dashed border-slate-200 rounded-2xl p-6 md:p-8 flex flex-col items-center justify-center text-center hover:border-ocean-400 hover:bg-ocean-50/50 cursor-pointer transition-all duration-300"
                     >
-                        <div className="h-14 w-14 bg-ocean-100 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                            <Mic className="h-7 w-7 text-ocean-600" />
+                        <div className="h-12 w-12 md:h-14 md:w-14 bg-ocean-100 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                            <Mic className="h-6 w-6 md:h-7 md:w-7 text-ocean-600" />
                         </div>
-                        <h3 className="text-lg font-semibold text-slate-900">Record New Lecture</h3>
-                        <p className="text-sm text-slate-500 mt-1">Start recording live audio</p>
+                        <h3 className="text-base md:text-lg font-semibold text-slate-900">Record New Lecture</h3>
+                        <p className="text-xs md:text-sm text-slate-500 mt-1">Start recording live audio</p>
                     </div>
 
                     {lectures.map((lecture) => (
                         <div
                             key={lecture.id}
                             onClick={() => navigate(`/lecture/${lecture.id}/review`)}
-                            className="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm hover:shadow-md transition-shadow relative group cursor-pointer"
+                            className="bg-white rounded-2xl p-5 md:p-6 border border-slate-100 shadow-sm hover:shadow-md transition-shadow relative group cursor-pointer"
                         >
                             <Button
                                 variant="ghost"
                                 size="icon"
-                                className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 text-red-400 hover:text-red-600 hover:bg-red-50 transition-all rounded-full h-8 w-8"
+                                className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 text-red-400 hover:text-red-600 hover:bg-red-50 transition-all rounded-full h-8 w-8"
                                 onClick={(e) => handleDelete(e, lecture.id)}
                             >
                                 <Trash2 className="h-4 w-4" />
                             </Button>
                             <div className="flex justify-between items-start mb-4">
-                                <div className="h-10 w-10 bg-slate-100 rounded-lg flex items-center justify-center text-slate-600">
+                                <div className="h-10 w-10 bg-slate-50 rounded-lg flex items-center justify-center text-slate-500">
                                     <FileText className="h-5 w-5" />
                                 </div>
                             </div>
-                            <h3 className="text-lg font-bold text-slate-900 mb-2 truncate">{lecture.title}</h3>
-                            <p className="text-slate-500 text-sm line-clamp-3 mb-4">{lecture.summary || 'Click to generate insights from your lecture audio.'}</p>
-                            <div className="flex items-center justify-between text-xs text-slate-400">
+                            <h3 className="text-lg font-bold text-slate-900 mb-2 truncate pr-6">{lecture.title}</h3>
+                            <p className="text-slate-500 text-sm line-clamp-3 mb-4 min-h-[3rem]">{lecture.summary || 'Recording processed. Click to explore insights and chat with AI.'}</p>
+                            <div className="flex items-center justify-between text-xs text-slate-400 mt-auto pt-2 border-t border-slate-50">
                                 <span className="flex items-center gap-1">
                                     <Calendar className="h-3 w-3" /> {new Date(lecture.created_at).toLocaleDateString()}
                                 </span>
-                                <span className="font-medium text-ocean-600">View Notes →</span>
+                                <span className="font-semibold text-ocean-600">View Details</span>
                             </div>
                         </div>
                     ))}
